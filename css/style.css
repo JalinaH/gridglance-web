@@ -1,0 +1,505 @@
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Titillium+Web:wght@300;400;600;700&display=swap');
+
+:root {
+    /* Brand */
+    --f1-red: #E10600;
+    --f1-red-bright: #FF3B30;
+
+    /* Dark theme (default) */
+    --bg: #0C0F14;
+    --bg-alt: #121722;
+    --surface: #151B24;
+    --surface-alt: #1C2430;
+    --border: #232C3A;
+    --text: #ffffff;
+    --text-muted: #9EA7B5;
+
+    /* Design tokens */
+    --radius: 18px;
+    --radius-sm: 12px;
+    --radius-xs: 6px;
+    --glass-opacity: 0.95;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--f1-red-bright);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    padding-left: 1.5rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1.2px;
+    font-weight: 400;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== Background Glow (matches F1Scaffold) ===== */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(225, 6, 0, 0.12) 0%, transparent 70%);
+}
+
+body::after {
+    width: 350px;
+    height: 350px;
+    bottom: -80px;
+    left: -80px;
+    background: radial-gradient(circle, rgba(225, 6, 0, 0.08) 0%, transparent 70%);
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    background: rgba(12, 15, 20, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+}
+
+.logo:hover {
+    text-decoration: none;
+    color: var(--f1-red);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--f1-red);
+    text-decoration: none;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* ===== Hero ===== */
+.hero {
+    text-align: center;
+    padding: 7rem 1.5rem 5rem;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+
+.download-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--f1-red), var(--f1-red-bright));
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 4px 20px rgba(225, 6, 0, 0.35);
+}
+
+.btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--f1-red);
+    box-shadow: 0 4px 20px rgba(225, 6, 0, 0.15);
+}
+
+/* ===== Glass Card (matches GlassCard widget) ===== */
+.glass-card {
+    background: linear-gradient(135deg,
+        rgba(21, 27, 36, var(--glass-opacity)),
+        rgba(28, 36, 48, var(--glass-opacity)));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--f1-red), transparent);
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.glass-card:hover {
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Features ===== */
+.features {
+    padding: 5rem 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+/* ===== Contact ===== */
+.contact {
+    padding: 5rem 1.5rem;
+    background: var(--bg-alt);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+}
+
+.contact > .container > p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+}
+
+.contact-item svg {
+    color: var(--f1-red);
+    flex-shrink: 0;
+}
+
+/* ===== Page Header (Privacy/Terms) ===== */
+.page-header {
+    padding: 4.5rem 1.5rem 2rem;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* ===== Content (Privacy/Terms) ===== */
+.content {
+    padding: 3rem 1.5rem 5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.content-narrow {
+    max-width: 750px;
+}
+
+.content h2 {
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+
+.content h3 {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.content p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.content ul {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.content li {
+    margin-bottom: 0.35rem;
+}
+
+/* ===== Footer ===== */
+.footer {
+    margin-top: auto;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--f1-red);
+}
+
+/* ===== Stat Pill (badge style from app) ===== */
+.stat-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    background: linear-gradient(135deg, var(--f1-red), var(--f1-red-bright));
+    color: #fff;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(12, 15, 20, 0.95);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .hero {
+        padding: 4.5rem 1.5rem 3.5rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
